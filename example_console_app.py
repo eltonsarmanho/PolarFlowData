@@ -57,11 +57,16 @@ class PolarAccessLinkExample(object):
         exercise = self.accesslink.get_exercises(access_token=self.config["access_token"])
         sleep =  self.accesslink.get_sleep(access_token=self.config["access_token"])
         recharge = self.accesslink.get_recharge(access_token=self.config["access_token"])
+        cardio = self.accesslink.get_cardio(access_token=self.config["access_token"])
+        heart_hate = self.accesslink.get_heart_rate(access_token=self.config["access_token"])
 
         print("exercises: ", end = '')
         pretty_print_json(exercise)
-        pretty_print_json(sleep)
+        #pretty_print_json(sleep)
         pretty_print_json(recharge)
+        pretty_print_json(cardio)
+        #pretty_print_json(heart_hate)
+        self.get_exercises()
 
     def get_user_information(self):
         user_info = self.accesslink.users.get_information(user_id=self.config["user_id"],
@@ -115,7 +120,7 @@ class PolarAccessLinkExample(object):
             print("Exercise summary:")
             pretty_print_json(exercise_summary)
 
-        transaction.commit()
+        #transaction.commit()
 
     def get_daily_activity(self):
         transaction = self.accesslink.daily_activity.create_transaction(user_id=self.config["user_id"],
@@ -132,7 +137,7 @@ class PolarAccessLinkExample(object):
             print("Activity summary:")
             pretty_print_json(activity_summary)
 
-        transaction.commit()
+        #transaction.commit()
 
     def get_physical_info(self):
         transaction = self.accesslink.physical_info.create_transaction(user_id=self.config["user_id"],
@@ -149,7 +154,7 @@ class PolarAccessLinkExample(object):
             print("Physical info:")
             pretty_print_json(physical_info)
 
-        transaction.commit()
+        #transaction.commit()
 
 
 if __name__ == "__main__":

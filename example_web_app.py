@@ -43,10 +43,13 @@ def data():
         exercisedata = accesslink.get_exercises(access_token=item["access_token"])
         sleepdata = accesslink.get_sleep(access_token=item["access_token"])
         rechargedata = accesslink.get_recharge(access_token=item["access_token"])
+        cardio = accesslink.get_cardio(access_token=item["access_token"])
         userdata = accesslink.get_userdata(user_id=item["user_id"], access_token=item["access_token"])
+
         alldata.append( {"exercises": exercisedata,
                            "sleepdata": sleepdata,
                            "recharge": rechargedata,
+                           "Cardio":cardio,
                            "userdata": userdata })
     return render_template("data.html", alldata = alldata)
 

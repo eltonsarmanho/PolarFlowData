@@ -6,8 +6,14 @@ import yaml
 
 def load_config(filename):
     """Load configuration from a yaml file"""
-    with open(filename) as f:
-        return yaml.full_load(f)
+    with open(filename, 'r') as f:
+        # Ler o conteúdo e adicionar espaço após os dois pontos manualmente, caso esteja faltando
+        content = f.read().replace(":", ": ")
+        print("Conteúdo bruto do arquivo corrigido:\n", content)  # Mostra o conteúdo com os espaços adicionados
+        config = yaml.safe_load(content)
+        print("Tipo de config:", type(config))  # Verificar o tipo carregado
+        print("Config carregado:", config)  # Exibe o conteúdo
+        return config
 
 
 def save_config(config, filename):

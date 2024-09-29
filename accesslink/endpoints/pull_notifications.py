@@ -15,3 +15,5 @@ class PullNotifications(Resource):
         Get list of available exercises and activities for users
         """
         return self._get(endpoint="/notifications")
+
+

@@ -45,6 +45,12 @@ class AccessLink(object):
 
     def get_sleep(self, access_token):
         return self.oauth.get(endpoint="/users/sleep/", access_token=access_token)
+
+    def get_cardio(self, access_token):
+        return self.oauth.get(endpoint="/users/cardio-load/", access_token=access_token)
+
+    def get_heart_rate(self, access_token):
+        return self.oauth.get(endpoint="/users/continuous-heart-rate?from=2024-08-30&to=2024-09-03", access_token=access_token)
     
     def get_recharge(self, access_token):
         return self.oauth.get(endpoint="/users/nightly-recharge/", access_token=access_token)
