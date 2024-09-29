@@ -1,122 +1,122 @@
-# Polar Open AccessLink example applications
+### Versão Alternativa (com Código Ajustado)
 
-Here you can find simple Python example applications that use the [Polar Open AccessLink] API. With the [Polar Open AccessLink] you can access different data recorded with Polar devices.
+Aqui você encontrará exemplos de aplicações Python que utilizam a API [Polar Open AccessLink]. Com o [Polar Open AccessLink], você pode acessar dados diversos registrados em dispositivos Polar.
 
-## Prerequisites
+## Pré-requisitos
 
-* [Polar Flow](https://flow.polar.com) account
-* [Python 3](https://www.python.org/downloads/) installed
-* [PIP (Python package installer)](https://pip.pypa.io/en/stable/installation/) installed
+* Conta no [Polar Flow](https://flow.polar.com)
+* [Python 3](https://www.python.org/downloads/) instalado
+* [PIP (Instalador de pacotes Python)](https://pip.pypa.io/en/stable/installation/) instalado
 
-## Getting Started
+## Introdução
 
-AccessLink API client is required in order to access the APIs. Following steps describe how the client is created and what other steps are required to access the data. Check out [Authentication section](https://www.polar.com/accesslink-api/#authentication) of the official documentation for more information about the authentication flow.
+O cliente da API AccessLink é necessário para acessar as APIs. Abaixo, estão descritos os passos para criar o cliente e acessar os dados. Para mais detalhes, consulte a [seção de autenticação](https://www.polar.com/accesslink-api/#authentication) da documentação oficial.
 
-### 1. Create new API client
+### 1. Criar um novo cliente de API
 
-Navigate to https://admin.polaraccesslink.com. Log in with your Polar Flow account and create a new API client.
+Acesse https://admin.polaraccesslink.com. Faça login com sua conta do Polar Flow e crie um novo cliente de API.
 
-When asked, use `http://localhost:5000/oauth2_callback` as the authorization redirect URL for this example. **Please note that it's important to use correct callback url** so that the example applications work correctly.
+Quando solicitado, use `http://localhost:5000/oauth2_callback` como URL de redirecionamento de autorização para este exemplo. **É importante usar o URL correto para o redirecionamento** para que as aplicações de exemplo funcionem adequadamente.
 
-You can edit your API client later and modify and/or add new authorization redirect URLs. Just make sure that with these examples the correct redirect URL is set as the default.
-  
-### 2. Configure client credentials
+Você pode editar o seu cliente de API posteriormente para modificar ou adicionar novos URLs de redirecionamento. Apenas certifique-se de que o URL correto esteja configurado como padrão para estes exemplos.
 
-Fill in your client id and secret in [config.yml] (example below):
+### 2. Configurar credenciais do cliente
+
+Preencha seu `client_id` e `client_secret` no arquivo [config.yml] (exemplo abaixo):
 
 ```bash
 client_id: 57a715f8-b7e8-11e7-abc4-cec278b6b50a
 client_secret: 62c54f4a-b7e8-11e7-abc4-cec278b6b50a
 ```
-  
-### 3. Install python dependencies
+
+### 3. Instalar dependências do Python
 
 ```bash
 pip3 install -r requirements.txt
 ```
 
-## Example web app
+## Exemplo de aplicação web
 
-Web application is the easiest and fastest way to get started. It does the required user account linking and user registration automatically for logged in Polar Flow user once the user has authorized the access.
+A aplicação web é a forma mais rápida e simples de começar. Ela faz automaticamente a vinculação de conta e o registro do usuário no Polar Flow, após a autorização.
 
-### Running the web application
+### Executando a aplicação web
 
 ```bash
 python example_web_app.py
 ```
 
-After launching the app navigate to [http://localhost:5000/](http://localhost:5000/)
+Após iniciar, navegue para [http://localhost:5000/](http://localhost:5000/)
 
-* On the site there are buttons for authorization and reading current available data.
-* Click "Link to authorize" to authorize the user access using Polar Flow credentials.
-* Webapp supports multible connected accounts
-  * In order to connect using another account, you need to be logged out of [https://flow.polar.com/](https://flow.polar.com/), after which the authorization button will redirect to a login page.
-* Clicking the authorization button multible times, while being logged in only re-logs your current account which will reveal a "Account Linked" box.
+* Na página, há botões para autorização e leitura dos dados disponíveis.
+* Clique em "Link to authorize" para autorizar o acesso com as credenciais do Polar Flow.
+* O Webapp suporta múltiplas contas conectadas.
+  * Para conectar outra conta, saia de [https://flow.polar.com/](https://flow.polar.com/), e o botão de autorização redirecionará para uma página de login.
+* Clicar no botão de autorização várias vezes enquanto estiver logado apenas relogará a conta atual, revelando um campo "Conta Vinculada".
 
-After the account has been linked a new file [usertokens.yml] will be created for user's access token.
+Após a vinculação da conta, um novo arquivo [usertokens.yml] será criado para armazenar o token de acesso do usuário.
 
-Web application has following functionality:
+A aplicação web tem a seguinte funcionalidade:
 
-1) Link to authorize
-    * Authenticates Polar Flow user, logout in Polar Flow to authenticate another user.
-2) Read data
-   * Get user information
-   * Get data from non-transactional endpoints that do not discard the data after it has been fetched.
-       * Data includes: exercises, sleep and nightly recharge.
+1) Link para autorização
+    * Autentica o usuário do Polar Flow. Desconecte-se para autenticar outro usuário.
+2) Ler dados
+   * Obtém informações do usuário
+   * Obtém dados de endpoints não-transacionais, que não descartam dados após a leitura.
+       * Dados incluem: exercícios, sono e recarga noturna.
 
-## Example console app
+## Exemplo de aplicação em console
 
-Console application requires a bit more manual work than the web app. User account needs to be linked to client application and the user registered before client can get any user data. User is asked for authorization in Polar Flow, after which the user is redirected back to application callback url (which was previously set when API client was created) with the authorization code.
+A aplicação de console requer mais trabalho manual do que a web. A conta do usuário precisa ser vinculada ao cliente e o usuário registrado antes de qualquer dado ser acessado. O usuário é solicitado a autorizar no Polar Flow, sendo redirecionado de volta ao URL de callback da aplicação com o código de autorização.
 
-### Linking and registering the user
+### Vinculando e registrando o usuário
 
-First we beed to start the callback service by running:
+Primeiro, precisamos iniciar o serviço de callback rodando:
 
 ```bash
 python authorization_callback_server.py
 ```
 
-When the callback service is running, navigate to `https://flow.polar.com/oauth2/authorization?response_type=code&client_id=<YOUR_CLIENT_ID>` to link the user account and register the user. You should see Polar Flow login window if not logged in already. Otherwise your browser should be redirected to the callback url and the linking should be completed.
+Com o serviço em execução, navegue para `https://flow.polar.com/oauth2/authorization?response_type=code&client_id=<YOUR_CLIENT_ID>` para vincular a conta e registrar o usuário. Se não estiver logado, a janela de login do Polar Flow será exibida. Caso contrário, o navegador será redirecionado para o URL de callback e a vinculação será concluída.
 
-After linking has been done you may close [authorization_callback_server.py]. Access token and user id should be automatically saved to [config.yml] and the file should look similar to following:
+Após a vinculação, o arquivo [authorization_callback_server.py] pode ser fechado. O token de acesso e o ID do usuário serão automaticamente salvos no [config.yml], que ficará assim:
 
 ```bash
-access_token: YOUR_ACCESS_TOKEN
-client_id: YOUR_CLIENT_ID
-client_secret: YOUR_CLIENT_SECRET
-user_id: YOUR_POLAR_USER_ID
+access_token: SEU_TOKEN_DE_ACESSO
+client_id: SEU_CLIENT_ID
+client_secret: SEU_CLIENT_SECRET
+user_id: SEU_ID_DE_USUÁRIO_POLAR
 ```
 
-### Running the console application
+### Executando a aplicação de console
 
 ```bash
 python example_console_app.py
 ```
 
-Console application has following functionality:
+A aplicação em console tem as seguintes funcionalidades:
 
-1) Get user information
-    * Get information about the user, this includes gender, first name, etc.
-2) Get available transactional data
-    * Get data from transactional endpoints that discard the data after it has been fetched.
-    * Data includes: exercises, activity summary and physical information.
-3) Get available non-transactional data
-    * Get data from non-transactional endpoints that do not discard the data after it has been fetched.
-    * Data includes: exercises, sleep and nightly recharge.
-4) Revoke access token
-    * Revoke current access token after which authentication needs to be done again.
-5) Exit
-    * Quit the application.
+1) Obter informações do usuário
+    * Informações como gênero, primeiro nome, etc.
+2) Obter dados transacionais disponíveis
+    * Dados de endpoints transacionais que descartam os dados após a leitura.
+    * Dados incluem: exercícios, resumo de atividades e informações físicas.
+3) Obter dados não-transacionais disponíveis
+    * Dados de endpoints não-transacionais.
+    * Dados incluem: exercícios, sono e recarga noturna.
+4) Revogar token de acesso
+    * Revoga o token de acesso atual, exigindo nova autenticação.
+5) Sair
+    * Encerra a aplicação.
 
-Once user has linked their user account to client application and synchronizes data from Polar device to Polar Flow, the example application is able to load the data.
+Uma vez que o usuário vinculou sua conta ao cliente e sincronizou os dados do dispositivo Polar com o Polar Flow, a aplicação pode carregar os dados.
 
-## Troubleshooting
+## Solução de Problemas
 
-If you have any trouble running these example applications check the following.
+Caso tenha dificuldades, verifique:
 
-1) Make sure that you are **using the correct python and pip** if you have multiple Python versions installed.
-2) Make sure that you have **created and configured the API client** with your `client_id` and `client_secret` in the [config.yml] file.
-3) Make sure that you have used **correct authorization redirect URL**. You can reconfigure your API client if needed.
+1) Certifique-se de **usar a versão correta do Python e PIP**.
+2) Verifique se **criou e configurou corretamente o cliente de API** com seu `client_id` e `client_secret` no [config.yml].
+3) Certifique-se de ter utilizado **o URL de redirecionamento correto**.
 
 [authorization_callback_server.py]: ./authorization_callback_server.py
 
@@ -125,3 +125,9 @@ If you have any trouble running these example applications check the following.
 [usertokens.yml]: ./usertokens.yml
 
 [Polar Open AccessLink]: https://www.polar.com/accesslink-api/
+
+### Novas Features
+
+- A possibilidade de gerar relatórios automáticos a partir dos dados sincronizados.
+- Suporte aprimorado para múltiplos usuários no console e na web.
+- Integração com bancos de dados externos para armazenamento seguro de tokens e dados do usuário.
