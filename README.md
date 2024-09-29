@@ -98,7 +98,7 @@ A aplicação em console tem as seguintes funcionalidades:
 1) Obter informações do usuário
     * Informações como gênero, primeiro nome, etc.
 2) Obter dados transacionais disponíveis
-    * Dados de endpoints transacionais que descartam os dados após a leitura.
+    * Dados de endpoints transacionais que descartam os dados após a leitura. Uma vez que você requisitou, salve os dados. Você não poderá fazer coletar esses dados exceto caso tenha nova notificação (uma nova captura ou treino)
     * Dados incluem: exercícios, resumo de atividades e informações físicas.
 3) Obter dados não-transacionais disponíveis
     * Dados de endpoints não-transacionais.
