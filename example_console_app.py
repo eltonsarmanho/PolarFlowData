@@ -137,6 +137,7 @@ class PolarAccessLinkExample(object):
             print("Activity summary:")
             pretty_print_json(activity_summary)
 
+
         #transaction.commit()
 
     def get_physical_info(self):
