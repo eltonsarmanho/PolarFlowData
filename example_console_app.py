@@ -2,7 +2,7 @@
 
 from __future__ import print_function
 
-from utils import load_config, save_config, pretty_print_json
+from utils import load_config, save_config, pretty_print_json, save_as_json
 from accesslink import AccessLink
 
 
@@ -62,9 +62,13 @@ class PolarAccessLinkExample(object):
 
         print("exercises: ", end = '')
         pretty_print_json(exercise)
+        save_as_json(exercise, 'exercise.json')
         #pretty_print_json(sleep)
         pretty_print_json(recharge)
+        save_as_json(recharge, 'recharge.json')
         pretty_print_json(cardio)
+        save_as_json(cardio,'cardio.json')
+
         #pretty_print_json(heart_hate)
         self.get_exercises()
 
@@ -119,8 +123,9 @@ class PolarAccessLinkExample(object):
 
             print("Exercise summary:")
             pretty_print_json(exercise_summary)
+            save_as_json(exercise_summary, 'exercise_summary.json')
 
-        #transaction.commit()
+        transaction.commit()
 
     def get_daily_activity(self):
         transaction = self.accesslink.daily_activity.create_transaction(user_id=self.config["user_id"],
@@ -136,9 +141,9 @@ class PolarAccessLinkExample(object):
 
             print("Activity summary:")
             pretty_print_json(activity_summary)
+            save_as_json(activity_summary, 'activity_summary.json')
 
-
-        #transaction.commit()
+        transaction.commit()
 
     def get_physical_info(self):
         transaction = self.accesslink.physical_info.create_transaction(user_id=self.config["user_id"],
@@ -154,8 +159,8 @@ class PolarAccessLinkExample(object):
 
             print("Physical info:")
             pretty_print_json(physical_info)
-
-        #transaction.commit()
+            save_as_json(physical_info, 'physical_info.json')
+        transaction.commit()
 
 
 if __name__ == "__main__":

@@ -24,3 +24,9 @@ def save_config(config, filename):
 
 def pretty_print_json(data):
     print(json.dumps(data, indent=4, sort_keys=True))
+
+def save_as_json(data, filename):
+    """Save data to a JSON file"""
+    with open(filename, "w") as json_file:
+        json.dump(data, json_file, indent=4, sort_keys=True)
+        print(f"Dados salvos em {filename} no formato JSON")
