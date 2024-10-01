@@ -62,12 +62,12 @@ class PolarAccessLinkExample(object):
 
         print("exercises: ", end = '')
         pretty_print_json(exercise)
-        save_as_json(exercise, 'exercise.json')
+        save_as_json(exercise, 'Data/exercise.json')
         #pretty_print_json(sleep)
         pretty_print_json(recharge)
-        save_as_json(recharge, 'recharge.json')
+        save_as_json(recharge, 'Data/recharge.json')
         pretty_print_json(cardio)
-        save_as_json(cardio,'cardio.json')
+        save_as_json(cardio, 'Data/cardio.json')
 
         #pretty_print_json(heart_hate)
         self.get_exercises()
@@ -123,7 +123,7 @@ class PolarAccessLinkExample(object):
 
             print("Exercise summary:")
             pretty_print_json(exercise_summary)
-            save_as_json(exercise_summary, 'exercise_summary.json')
+            save_as_json(exercise_summary, 'Data/exercise_summary.json')
 
         transaction.commit()
 
