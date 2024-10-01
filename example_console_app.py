@@ -6,10 +6,6 @@ from utils import load_config, save_config, pretty_print_json, save_as_json
 from accesslink import AccessLink
 
 
-try:
-    input = raw_input
-except NameError:
-    pass
 
 
 CONFIG_FILENAME = "config.yml"
@@ -57,17 +53,24 @@ class PolarAccessLinkExample(object):
         exercise = self.accesslink.get_exercises(access_token=self.config["access_token"])
         sleep =  self.accesslink.get_sleep(access_token=self.config["access_token"])
         recharge = self.accesslink.get_recharge(access_token=self.config["access_token"])
-        cardio = self.accesslink.get_cardio(access_token=self.config["access_token"])
+        #cardio = self.accesslink.get_cardio(access_token=self.config["access_token"])
         heart_hate = self.accesslink.get_heart_rate(access_token=self.config["access_token"])
 
         print("exercises: ", end = '')
         pretty_print_json(exercise)
-        save_as_json(exercise, 'Data/exercise.json')
+        # Verificando se o JSON está vazio
+        if not exercise:  # Pode ser uma lista ou dicionário vazio
+            print("O arquivo JSON está vazio.")
+
+        else:
+            print("O arquivo JSON tem dados:", exercise)
+            save_as_json(exercise, 'DataRequest/exercise.json')
+
         #pretty_print_json(sleep)
-        pretty_print_json(recharge)
-        save_as_json(recharge, 'Data/recharge.json')
-        pretty_print_json(cardio)
-        save_as_json(cardio, 'Data/cardio.json')
+        #pretty_print_json(recharge)
+        #save_as_json(recharge, 'DataRequest/recharge.json')
+        #pretty_print_json(cardio)
+        #save_as_json(cardio, 'DataRequest/cardio.json')
 
         #pretty_print_json(heart_hate)
         self.get_exercises()
@@ -123,9 +126,11 @@ class PolarAccessLinkExample(object):
 
             print("Exercise summary:")
             pretty_print_json(exercise_summary)
-            save_as_json(exercise_summary, 'Data/exercise_summary.json')
+            save_as_json(exercise_summary, 'DataRequest/exercise_summary.json')
 
         transaction.commit()
+
+        self.exit(self)
 
     def get_daily_activity(self):
         transaction = self.accesslink.daily_activity.create_transaction(user_id=self.config["user_id"],
@@ -141,7 +146,7 @@ class PolarAccessLinkExample(object):
 
             print("Activity summary:")
             pretty_print_json(activity_summary)
-            save_as_json(activity_summary, 'activity_summary.json')
+            save_as_json(activity_summary, 'DataRequest/activity_summary.json')
 
         transaction.commit()
 
@@ -159,7 +164,7 @@ class PolarAccessLinkExample(object):
 
             print("Physical info:")
             pretty_print_json(physical_info)
-            save_as_json(physical_info, 'physical_info.json')
+            save_as_json(physical_info, 'DataRequest/3physical_info.json')
         transaction.commit()
 
 
