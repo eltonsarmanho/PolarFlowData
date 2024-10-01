@@ -57,20 +57,25 @@ class PolarAccessLinkExample(object):
         heart_hate = self.accesslink.get_heart_rate(access_token=self.config["access_token"])
 
         print("exercises: ", end = '')
-        pretty_print_json(exercise)
+
         # Verificando se o JSON está vazio
         if not exercise:  # Pode ser uma lista ou dicionário vazio
-            print("O arquivo JSON está vazio.")
-
+            print("O exercise JSON está vazio.")
         else:
-            print("O arquivo JSON tem dados:", exercise)
+            print("O exercise JSON tem dados:", exercise)
+            pretty_print_json(exercise)
             save_as_json(exercise, 'DataRequest/exercise.json')
 
         #pretty_print_json(sleep)
         #pretty_print_json(recharge)
         #save_as_json(recharge, 'DataRequest/recharge.json')
-        #pretty_print_json(cardio)
-        #save_as_json(cardio, 'DataRequest/cardio.json')
+        #if not cardio:  # Pode ser uma lista ou dicionário vazio
+        #    print("O cardio JSON está vazio.")
+
+        #else:
+        #    print("O cardio JSON tem dados:", cardio)
+        #    pretty_print_json(cardio)
+        #    save_as_json(cardio, 'DataRequest/cardio.json')
 
         #pretty_print_json(heart_hate)
         self.get_exercises()
