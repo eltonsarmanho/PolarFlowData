@@ -232,5 +232,23 @@
         "start_time": "2024-09-27T18:11:51",
         "start_time_utc_offset": -180,
         "upload_time": "2024-09-30T06:53:26Z"
+    },
+    {
+        "calories": 453,
+        "detailed_sport_info": "FUNCTIONAL_TRAINING",
+        "device": "Polar Verity Sense",
+        "device_id": "D5FA2928",
+        "duration": "PT2592S",
+        "has_route": false,
+        "heart_rate": {
+            "average": 130,
+            "maximum": 164
+        },
+        "id": "y7lrnK8D",
+        "polar_user": "https://www.polaraccesslink.com/v3/users/61922800",
+        "sport": "OTHER",
+        "start_time": "2024-10-10T18:31:03",
+        "start_time_utc_offset": -180,
+        "upload_time": "2024-10-10T22:14:23Z"
     }
 ]

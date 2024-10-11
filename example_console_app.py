@@ -2,7 +2,7 @@
 
 from __future__ import print_function
 
-from utils import load_config, save_config, pretty_print_json, save_as_json
+from utils import load_config, save_config, pretty_print_json, save_as_json, save_as_json_data_transacional
 from accesslink import AccessLink
 
 
@@ -78,7 +78,6 @@ class PolarAccessLinkExample(object):
         #    save_as_json(cardio, 'DataRequest/cardio.json')
 
         #pretty_print_json(heart_hate)
-        #self.get_exercises()
 
     def get_user_information(self):
         user_info = self.accesslink.users.get_information(user_id=self.config["user_id"],
@@ -131,7 +130,7 @@ class PolarAccessLinkExample(object):
 
             print("Exercise summary:")
             pretty_print_json(exercise_summary)
-            save_as_json(exercise_summary, 'DataRequest/exercise_summary.json')
+            save_as_json_data_transacional(exercise_summary, 'DataRequest/exercise_summary.json')
 
         transaction.commit()
 
@@ -151,7 +150,7 @@ class PolarAccessLinkExample(object):
 
             print("Activity summary:")
             pretty_print_json(activity_summary)
-            save_as_json(activity_summary, 'DataRequest/activity_summary.json')
+            save_as_json_data_transacional(activity_summary, 'DataRequest/activity_summary.json')
 
         transaction.commit()
 
@@ -169,7 +168,7 @@ class PolarAccessLinkExample(object):
 
             print("Physical info:")
             pretty_print_json(physical_info)
-            save_as_json(physical_info, 'DataRequest/3physical_info.json')
+            save_as_json_data_transacional(physical_info, 'DataRequest/physical_info.json')
         transaction.commit()
 
 

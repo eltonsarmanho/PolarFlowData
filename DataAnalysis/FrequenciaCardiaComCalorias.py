@@ -1,32 +1,70 @@
 
-import json
-import pandas as pd
-import matplotlib.pyplot as plt
-
 from DataAnalysis.DataLoader import DataLoader
+import matplotlib.pyplot as plt
+import plotly.express as px
+import pandas as pd
+
+import plotly.express as px
+import pandas as pd
+from sklearn.cluster import KMeans
+import numpy as np
 
 # Caminho para o arquivo JSON fornecido
 file_path = '../Data/exercise.json'
 
 data_loader = DataLoader(file_path)
 json_data = data_loader.load_json_data()
-df_from_json = data_loader.extract_data()
+df = data_loader.extract_data()
 
-
-# Finalmente, podemos criar um gráfico de dispersão para mostrar a relação entre frequência cardíaca média e calorias (supondo que temos os dados de frequência cardíaca)
-heart_rate_data = [
-    entry["heart_rate"]["average"] for entry in json_data
-]
+# Finalmente, podemos criar um gráfico de dispersão para mostrar a relação entre frequência cardíaca média e calorias
+heart_rate_data = [entry["heart_rate"]["average"] for entry in json_data]
 
 # Adicionar essa informação ao DataFrame
-df_from_json['heart_rate_avg'] = heart_rate_data
+df['heart_rate_avg'] = heart_rate_data
 
-# Gráfico de dispersão: frequência cardíaca média vs calorias queimadas
-plt.figure(figsize=(10, 6))
-plt.scatter(df_from_json['heart_rate_avg'], df_from_json['calories'], color='red', label="Dados")
-plt.title('Relação entre Frequência Cardíaca Média e Calorias Queimadas')
-plt.xlabel('Frequência Cardíaca Média (bpm)')
-plt.ylabel('Calorias Queimadas')
-plt.grid(True)
-plt.legend()
-plt.show()
+# Selecionar as colunas para o clustering
+X = df[['heart_rate_avg', 'calories']]
+
+# Aplicar K-means com 3 clusters (ou mais, dependendo da sua necessidade)
+kmeans = KMeans(n_clusters=3, random_state=0).fit(X)
+df['cluster'] = kmeans.labels_
+
+# Calcular a média de frequência cardíaca e calorias por cluster
+cluster_means = df.groupby('cluster')[['heart_rate_avg', 'calories']].mean()
+
+# Ordenar os clusters por calorias e atribuir rótulos baseados nas médias
+sorted_clusters = cluster_means.sort_values(by='calories')
+
+# Criar um dicionário de mapeamento para os rótulos de intensidade
+cluster_labels = {sorted_clusters.index[0]: 'Baixa Intensidade',
+                  sorted_clusters.index[1]: 'Intensidade Moderada',
+                  sorted_clusters.index[2]: 'Alta Intensidade'}
+
+
+# Atribuir os rótulos categorizados aos clusters no DataFrame
+df['cluster_category'] = df['cluster'].map(cluster_labels)
+
+# Definir cores para cada categoria de cluster
+color_map = {
+    'Baixa Intensidade': 'green',
+    'Intensidade Moderada': 'blue',
+    'Alta Intensidade': 'red'
+}
+
+# Criar gráfico de dispersão interativo com Plotly, usando os clusters categorizados
+fig = px.scatter(df, x='heart_rate_avg', y='calories', color='cluster_category',
+                 color_discrete_map=color_map,
+                 labels={
+                     'heart_rate_avg': 'Frequência Cardíaca Média (bpm)',
+                     'calories': 'Calorias Queimadas',
+                     'cluster_category': 'Intensidade do Treino'
+                 },
+                 title='Relação entre Frequência Cardíaca Média e Calorias Queimadas com Agrupamento',
+                 category_orders={"cluster_category": ["Alta Intensidade", "Intensidade Moderada", "Baixa Intensidade"]}# Ordem personalizada das legendas
+                 )
+
+# Aumentar o tamanho dos pontos para melhorar a visualização
+fig.update_traces(marker=dict(size=14))
+
+# Exibir o gráfico interativo
+fig.show()

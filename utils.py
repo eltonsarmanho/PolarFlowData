@@ -53,8 +53,8 @@ def save_as_json(new_data, filename):
         json.dump(combined_data, json_file, indent=4, sort_keys=True)
         print(f"Dados atualizados e salvos em {filename} no formato JSON")
 
-#def save_as_json(data, filename):
-#    """Save data to a JSON file"""
-#    with open(filename, "w") as json_file:
-#        json.dump(data, json_file, indent=4, sort_keys=True)
-#        print(f"Dados salvos em {filename} no formato JSON")
+def save_as_json_data_transacional(data, filename):
+    """Save data to a JSON file"""
+    with open(filename, "w") as json_file:
+        json.dump(data, json_file, indent=4, sort_keys=True)
+        print(f"Dados salvos em {filename} no formato JSON")
