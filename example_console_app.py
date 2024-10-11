@@ -78,7 +78,7 @@ class PolarAccessLinkExample(object):
         #    save_as_json(cardio, 'DataRequest/cardio.json')
 
         #pretty_print_json(heart_hate)
-        self.get_exercises()
+        #self.get_exercises()
 
     def get_user_information(self):
         user_info = self.accesslink.users.get_information(user_id=self.config["user_id"],
