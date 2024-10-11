@@ -64,5 +64,7 @@ mean_calories = df.groupby('cluster_category')['calories'].mean().reset_index()
 for level, mean_cal in zip(mean_calories['cluster_category'], mean_calories['calories']):
     fig.add_hline(y=mean_cal, line_dash="dash", line_color='black', annotation_text=f"Média das Calorias {level}: {mean_cal:.2f} cal")
 
+fig.write_html("../html/Plot_Calorias_IA.html")
+
 # Exibir o gráfico interativo
 fig.show()

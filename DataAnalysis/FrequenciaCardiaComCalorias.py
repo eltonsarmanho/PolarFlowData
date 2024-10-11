@@ -65,6 +65,7 @@ fig = px.scatter(df, x='heart_rate_avg', y='calories', color='cluster_category',
 
 # Aumentar o tamanho dos pontos para melhorar a visualização
 fig.update_traces(marker=dict(size=14))
+fig.write_html("../html/Plot_Frequencia_Calorias.html")
 
 # Exibir o gráfico interativo
 fig.show()
