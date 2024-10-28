@@ -1,6 +1,6 @@
 {
-  "week": {
-    "monday": {
+  "schedule": {
+    "2024-10-14": {
       "type": "Força",
       "exercises": [
         {
@@ -18,7 +18,7 @@
         }
       ]
     },
-    "tuesday": {
+    "2024-10-15": {
       "type": "Condicionamento",
       "exercises": [
         {
@@ -51,7 +51,7 @@
         }
       ]
     },
-    "thursday": {
+    "2024-10-17": {
       "type": "LPO",
       "exercises": [
         {
@@ -80,12 +80,118 @@
         }
       ]
     },
-    "friday": {
+    "2024-10-18": {
       "type": "Recovery",
       "exercises": [
         "Alongamentos",
         "Liberação Miofascial",
         "Bota de Compressão"
+      ]
+    },
+    "2024-10-21": {
+      "type": "Força e Mobilidade",
+      "exercises": [
+        {
+          "category": "Dominâncias",
+          "details": "Joelho e empurrar"
+        },
+        {
+          "category": "Mobilidade",
+          "details": "Ombro e Joelho"
+        },
+        {
+          "category": "Estabilidade",
+          "details": "Joelho"
+        },
+        {
+          "category": "Aquecimento"
+        },
+        {
+          "exercise": "TRX"
+        },
+        {
+          "exercise": "Flexão"
+        },
+        {
+          "exercise": "Agachamento"
+        },
+        {
+          "exercise": "Elevação de quadril unilateral"
+        },
+        {
+          "category": "Força",
+          "sets": [
+            "Supino",
+            "Desenvolvimento",
+            "Elevação frontal"
+          ]
+        },
+        {
+          "exercise": "Agachamento"
+        },
+        {
+          "exercise": "Búlgaro"
+        },
+        {
+          "exercise": "Recuo + Step Up"
+        }
+      ]
+    },
+    "2024-10-22": {
+      "type": "Fortalecimento Core",
+      "exercises": [
+        {
+          "category": "Mobilidade",
+          "sets": [
+            "Miniband"
+          ]
+        },
+        {
+          "category": "Cardio 1",
+          "sets": [
+            "Sprow com peso",
+            "Abs bicicleta",
+            "Swing alternado com kettlebell"
+          ]
+        },
+        {
+          "category": "Cardio 2",
+          "sets": [
+            "Abs dinâmico",
+            "Abs kettlebell alternado",
+            "Abs normal"
+          ]
+        }
+      ]
+    },
+    "2024-10-23": {
+      "type": "Força e Mobilidade",
+      "exercises": [
+        {
+          "category": "Mobilidade",
+          "sets": [
+            "Miofascial",
+            "Ombro, quadril, tórax",
+          ]
+        },
+        {
+          "category": "Aquecimento",
+          "details": "Dorsais e Posterior",
+          "sets": [
+            "Prancha dinâmica com halter",
+            "Elevação de quadril unilateral",
+            "Perdigueiro"
+          ]
+        },
+        {
+          "category": "Principal",
+          "details": "Dorsais e Posterior",
+          "sets": [
+            "Puxada baixa / Flexão na bola ou TRX",
+            "Puxada alta / Stiff",
+            "Remada curvada / Elevação pélvica"
+          ]
+        }
       ]
     }
   }
