@@ -5,11 +5,7 @@ from __future__ import print_function
 from utils import load_config, save_config, pretty_print_json, save_as_json, save_as_json_data_transacional
 from accesslink import AccessLink
 
-
-
-
 CONFIG_FILENAME = "config.yml"
-
 
 class PolarAccessLinkExample(object):
     """Example application for Polar Open AccessLink v3."""
@@ -64,20 +60,8 @@ class PolarAccessLinkExample(object):
         else:
             print("O exercise JSON tem dados:", exercise)
             pretty_print_json(exercise)
-            save_as_json(exercise, 'DataRequest/exercise.json')
+            save_as_json(exercise, 'Data/exercise.json')
 
-        #pretty_print_json(sleep)
-        #pretty_print_json(recharge)
-        #save_as_json(recharge, 'DataRequest/recharge.json')
-        #if not cardio:  # Pode ser uma lista ou dicionário vazio
-        #    print("O cardio JSON está vazio.")
-
-        #else:
-        #    print("O cardio JSON tem dados:", cardio)
-        #    pretty_print_json(cardio)
-        #    save_as_json(cardio, 'DataRequest/cardio.json')
-
-        #pretty_print_json(heart_hate)
 
     def get_user_information(self):
         user_info = self.accesslink.users.get_information(user_id=self.config["user_id"],
@@ -130,7 +114,7 @@ class PolarAccessLinkExample(object):
 
             print("Exercise summary:")
             pretty_print_json(exercise_summary)
-            save_as_json_data_transacional(exercise_summary, 'DataRequest/exercise_summary.json')
+            save_as_json_data_transacional(exercise_summary, 'Data/exercise_summary.json')
 
         transaction.commit()
 
@@ -150,7 +134,7 @@ class PolarAccessLinkExample(object):
 
             print("Activity summary:")
             pretty_print_json(activity_summary)
-            save_as_json_data_transacional(activity_summary, 'DataRequest/activity_summary.json')
+            save_as_json_data_transacional(activity_summary, 'Data/activity_summary.json')
 
         transaction.commit()
 
@@ -168,7 +152,7 @@ class PolarAccessLinkExample(object):
 
             print("Physical info:")
             pretty_print_json(physical_info)
-            save_as_json_data_transacional(physical_info, 'DataRequest/physical_info.json')
+            save_as_json_data_transacional(physical_info, 'Data/physical_info.json')
         transaction.commit()
 
 

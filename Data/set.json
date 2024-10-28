@@ -1,0 +1,92 @@
+{
+  "week": {
+    "monday": {
+      "type": "Força",
+      "exercises": [
+        {
+          "name": "Bi-Set",
+          "sets": [
+            {
+              "exercise_1": "Deadlift",
+              "exercise_2": "Supino"
+            },
+            {
+              "exercise_1": "Agachamento Frontal",
+              "exercise_2": "Remada Curvada"
+            }
+          ]
+        }
+      ]
+    },
+    "tuesday": {
+      "type": "Condicionamento",
+      "exercises": [
+        {
+          "category": "Mobilidade",
+          "sets": [
+            "Avião",
+            "Rotação Liga",
+            "Equilibrio Ketbell",
+            "Perdigueiro",
+            "Extensora com miniband"
+          ]
+        },
+        {
+          "category": "Cardio I",
+          "sets": [
+            "Burpee",
+            "Abs Supra",
+            "Remada Alta Kettlebell",
+            "Step up"
+          ]
+        },
+        {
+          "category": "Cardio II",
+          "sets": [
+            "Wall Ball",
+            "Sprow",
+            "Swing Kettlebell Alternado",
+            "Abs Bicicleta"
+          ]
+        }
+      ]
+    },
+    "thursday": {
+      "type": "LPO",
+      "exercises": [
+        {
+          "category": "Aquecimento",
+          "sets": [
+            "Overhead Squat",
+            "Polichinelo",
+            "Supino com Anilha"
+          ]
+        },
+        {
+          "category": "Potência",
+          "sets": [
+            "Push Press",
+            "High Pull",
+            "Power Clean",
+            "Front Squat"
+          ]
+        },
+        {
+          "category": "Reforço Muscular",
+          "sets": [
+            "Bíceps",
+            "Tríceps"
+          ]
+        }
+      ]
+    },
+    "friday": {
+      "type": "Recovery",
+      "exercises": [
+        "Alongamentos",
+        "Liberação Miofascial",
+        "Bota de Compressão"
+      ]
+    }
+  }
+}

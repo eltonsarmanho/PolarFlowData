@@ -1,8 +1,7 @@
 
 from DataAnalysis.DataLoader import DataLoader
-import matplotlib.pyplot as plt
-import plotly.express as px
-import pandas as pd
+
+import re
 
 import plotly.express as px
 import pandas as pd
@@ -15,6 +14,13 @@ file_path = '../Data/exercise.json'
 data_loader = DataLoader(file_path)
 json_data = data_loader.load_json_data()
 df = data_loader.extract_data()
+
+# Remover o dia da semana do campo 'start_time' e converter para datetime
+df['start_time'] = df['start_time'].apply(lambda x: re.match(r'\d{2}/\d{2}', x).group(0) + '/2024')
+df['start_time'] = pd.to_datetime(df['start_time'], format='%d/%m/%Y')
+
+# Ajustar o tamanho dos pontos e formatar as datas no hover
+df['Data'] = df['start_time'].dt.strftime('%d/%m/%Y')
 
 # Finalmente, podemos criar um gráfico de dispersão para mostrar a relação entre frequência cardíaca média e calorias
 heart_rate_data = [entry["heart_rate"]["average"] for entry in json_data]
@@ -52,8 +58,8 @@ color_map = {
 }
 
 # Criar gráfico de dispersão interativo com Plotly, usando os clusters categorizados
-fig = px.scatter(df, x='heart_rate_avg', y='calories', color='cluster_category',
-                 color_discrete_map=color_map,
+fig = px.scatter(df, x='duration', y='heart_rate_avg', color='cluster_category',
+                 color_discrete_map=color_map,hover_data={'Data': True},
                  labels={
                      'heart_rate_avg': 'Frequência Cardíaca Média (bpm)',
                      'calories': 'Calorias Queimadas',
