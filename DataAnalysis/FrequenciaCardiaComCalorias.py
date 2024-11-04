@@ -59,7 +59,7 @@ color_map = {
 
 # Criar gráfico de dispersão interativo com Plotly, usando os clusters categorizados
 fig = px.scatter(df, x='duration', y='heart_rate_avg', color='cluster_category',
-                 color_discrete_map=color_map,hover_data={'Data': True},
+                 color_discrete_map=color_map,hover_data={'Data': True, 'calories':True},
                  labels={
                      'heart_rate_avg': 'Frequência Cardíaca Média (bpm)',
                      'calories': 'Calorias Queimadas',
