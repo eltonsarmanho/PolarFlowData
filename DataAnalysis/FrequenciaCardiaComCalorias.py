@@ -75,7 +75,8 @@ fig = px.scatter(df, x='duration', y='heart_rate_avg', color='cluster_category',
 
 # Aumentar o tamanho dos pontos para melhorar a visualização
 fig.update_traces(marker=dict(size=14))
-#fig.write_html("../html/Plot_Frequencia_Calorias.html")
-
+project_root = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
+file_path = os.path.join(project_root,'..' ,'html', 'Plot_Frequencia_Calorias.html')
+fig.write_html(file_path)
 # Exibir o gráfico interativo
 fig.show()

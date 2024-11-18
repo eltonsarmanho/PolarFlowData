@@ -70,7 +70,9 @@ mean_calories = df.groupby('cluster_category')['calories'].mean().reset_index()
 for level, mean_cal in zip(mean_calories['cluster_category'], mean_calories['calories']):
     fig.add_hline(y=mean_cal, line_dash="dash", line_color='black', annotation_text=f"Média das Calorias {level}: {mean_cal:.2f} cal")
 
-fig.write_html("../html/Plot_Calorias_IA.html")
+project_root = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
+file_path = os.path.join(project_root,'..' ,'html', 'Plot_Calorias_IA.html')
+fig.write_html(file_path)
 
 # Exibir o gráfico interativo
 fig.show()

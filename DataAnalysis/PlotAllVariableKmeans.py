@@ -73,7 +73,8 @@ fig = px.scatter(df, x='duration', y='calories', color='cluster_category',color_
 fig.update_traces(marker=dict(sizeref=2., sizemin=10))
 # Aumentar o tamanho dos pontos
 #fig.update_traces(marker=dict(size=16))
-fig.write_html("../html/Plot_Duracao_Calorias_Frequencia.html")
-
+project_root = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
+file_path = os.path.join(project_root,'..' ,'html', 'Plot_Duracao_Calorias_Frequencia.html')
+fig.write_html(file_path)
 # Exibir o gráfico interativo 3D
 fig.show()

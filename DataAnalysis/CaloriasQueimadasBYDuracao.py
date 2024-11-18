@@ -64,7 +64,8 @@ mean_calories = df.groupby('level')['calories'].mean().reset_index()
 for level, mean_cal in zip(mean_calories['level'], mean_calories['calories']):
     fig.add_hline(y=mean_cal, line_dash="dash", line_color='black', annotation_text=f"Média das Calorias por Nível {level}: {mean_cal:.2f} cal")
 
-fig.write_html("../html/Plot_Calorias_Duracao.html")
-
+project_root = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
+file_path = os.path.join(project_root,'..' ,'html', 'Plot_Calorias_Duracao.html')
+fig.write_html(file_path)
 # Exibir o gráfico interativo
 fig.show()
