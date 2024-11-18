@@ -2,10 +2,14 @@ import plotly.express as px
 import pandas as pd
 import re
 from sklearn.cluster import KMeans
-from DataAnalysis.DataLoader import DataLoader
+from dataLoader import DataLoader
 
+import sys
+import os
+import json
 # Caminho para o arquivo JSON fornecido
-file_path = '../Data/exercise.json'
+project_root = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
+file_path = os.path.join(project_root,'..' ,'Data', 'exercise.json')
 
 # Exemplo de como carregar os dados (usando sua classe DataLoader)
 data_loader = DataLoader(file_path)

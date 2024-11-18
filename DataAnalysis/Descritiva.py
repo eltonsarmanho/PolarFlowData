@@ -3,10 +3,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as stats
-from DataAnalysis.DataLoader import DataLoader
-
+from dataLoader import DataLoader
+import sys
+import os
+import json
 # Caminho para o arquivo JSON fornecido
-file_path = '../Data/exercise.json'
+project_root = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
+file_path = os.path.join(project_root,'..' ,'Data', 'exercise.json')
 
 data_loader = DataLoader(file_path)
 json_data = data_loader.load_json_data()

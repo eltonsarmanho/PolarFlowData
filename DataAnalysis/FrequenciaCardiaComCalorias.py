@@ -1,5 +1,5 @@
 
-from DataAnalysis.DataLoader import DataLoader
+from dataLoader import DataLoader
 
 import re
 
@@ -7,9 +7,13 @@ import plotly.express as px
 import pandas as pd
 from sklearn.cluster import KMeans
 import numpy as np
-
+import sys
+import os
+import json
 # Caminho para o arquivo JSON fornecido
-file_path = '../Data/exercise.json'
+project_root = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
+file_path = os.path.join(project_root,'..' ,'Data', 'exercise.json')
+
 
 data_loader = DataLoader(file_path)
 json_data = data_loader.load_json_data()
@@ -71,7 +75,7 @@ fig = px.scatter(df, x='duration', y='heart_rate_avg', color='cluster_category',
 
 # Aumentar o tamanho dos pontos para melhorar a visualização
 fig.update_traces(marker=dict(size=14))
-fig.write_html("../html/Plot_Frequencia_Calorias.html")
+#fig.write_html("../html/Plot_Frequencia_Calorias.html")
 
 # Exibir o gráfico interativo
 fig.show()

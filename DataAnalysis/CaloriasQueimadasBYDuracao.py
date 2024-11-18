@@ -1,8 +1,10 @@
 import plotly.express as px
 import pandas as pd
 import re
-from DataAnalysis.DataLoader import DataLoader
-
+from dataLoader import DataLoader
+import sys
+import os
+import json
 # Função para definir níveis de intensidade com base nas calorias queimadas
 def define_level(calories):
     if calories < 400:
@@ -13,7 +15,11 @@ def define_level(calories):
         return 'Alta Intensidade'
 
 # Caminho para o arquivo JSON fornecido
-file_path = '../Data/exercise.json'
+project_root = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
+file_path = os.path.join(project_root,'..' ,'Data', 'exercise.json')
+
+
+data_loader = DataLoader(file_path)
 
 # Exemplo de como carregar os dados (usando sua classe DataLoader)
 data_loader = DataLoader(file_path)
