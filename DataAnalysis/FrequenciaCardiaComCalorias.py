@@ -78,5 +78,6 @@ fig.update_traces(marker=dict(size=14))
 project_root = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
 file_path = os.path.join(project_root,'..' ,'html', 'Plot_Frequencia_Calorias.html')
 fig.write_html(file_path)
+
 # Exibir o gráfico interativo
 fig.show()
