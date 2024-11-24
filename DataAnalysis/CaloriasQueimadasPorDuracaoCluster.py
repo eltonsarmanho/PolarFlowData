@@ -12,7 +12,7 @@ import json
 # Exemplo de como carregar os dados (usando sua classe DataLoader)
 # Caminho para o arquivo JSON fornecido
 project_root = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
-file_path = os.path.join(project_root,'..' ,'Data', 'exercise.json')
+file_path = os.path.join(project_root,'..' ,'Data', 'bioData.json')
 
 data_loader = DataLoader(file_path)
 json_data = data_loader.load_json_data()
